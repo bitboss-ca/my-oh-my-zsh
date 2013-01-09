@@ -1,0 +1,119 @@
+# FreeAgent puts the powerline style in zsh !
+
+if [ "$DAVE_RIGHT_B" = "" ]; then
+  DAVE_RIGHT_B=%D{%H:%M:%S}
+fi
+
+if [ "$DAVE_RIGHT_A" = "" ]; then
+  DAVE_RIGHT_A=%D{%Y-%m-%d}
+fi
+
+DAVE_CURRENT_PATH="%d"
+
+if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
+  DAVE_CURRENT_PATH="%1~"
+fi
+
+DAVE_GIT_INFO_LEFT=""
+DAVE_GIT_INFO_RIGHT="%F{red}"$''"%F{black}%K{red}"$'$(git_prompt_info)'" %f"
+if [ "$DAVE_SHOW_GIT_ON_RIGHT" = "" ]; then
+    DAVE_GIT_INFO_LEFT=$'$(git_prompt_info)'
+    DAVE_GIT_INFO_RIGHT=""
+fi
+
+
+############################################
+#	New Colors Config
+############################################
+if [ -z $DAVE_COLOR_HOST_BG ]; then
+	DAVE_COLOR_HOST_BG='012'
+fi
+if [ -z $DAVE_COLOR_HOST_FG ]; then
+	DAVE_COLOR_HOST_FG='252'
+fi
+
+if [ -z $DAVE_COLOR_USER_BG ]; then
+	DAVE_COLOR_USER_BG='004'
+fi
+if [ -z $DAVE_COLOR_USER_FG ]; then
+	DAVE_COLOR_USER_FG='252'
+fi
+
+if [ -z $DAVE_COLOR_DIR_BG ]; then
+	DAVE_COLOR_DIR_BG='022'
+fi
+if [ -z $DAVE_COLOR_DIR_FG ]; then
+	DAVE_COLOR_DIR_FG='252'
+fi
+
+if [ -z $DAVE_COLOR_END_BG ]; then
+	DAVE_COLOR_END_BG='000'
+fi
+############################################
+
+############################################
+#	New Colors Setup
+############################################
+DAVE_HOST_BG=%K{$DAVE_COLOR_HOST_BG}
+DAVE_HOST_FG=%F{$DAVE_COLOR_HOST_FG}
+
+DAVE_HOSTUSER_BG=%K{$DAVE_COLOR_USER_BG}
+DAVE_HOSTUSER_FG=%F{$DAVE_COLOR_HOST_BG}
+
+DAVE_USER_BG=%K{$DAVE_COLOR_USER_BG}
+DAVE_USER_FG=%F{$DAVE_COLOR_USER_FG}
+
+DAVE_USERDIR_BG=%K{$DAVE_COLOR_DIR_BG}
+DAVE_USERDIR_FG=%F{$DAVE_COLOR_USER_BG}
+
+DAVE_DIR_BG=%K{$DAVE_COLOR_DIR_BG}
+DAVE_DIR_FG=%F{$DAVE_COLOR_DIR_FG}
+
+DAVE_END_BG=%K{$DAVE_COLOR_END_BG}
+DAVE_END_FG=%F{$DAVE_COLOR_DIR_BG}
+############################################
+
+
+
+DAVE_COLOR_BG_GRAY=%K{240}
+DAVE_COLOR_BG_LIGHT_GRAY=%K{240}
+DAVE_COLOR_BG_WHITE=%K{255}
+
+DAVE_COLOR_FG_GRAY=%F{240}
+DAVE_COLOR_FG_LIGHT_GRAY=%F{240}
+DAVE_COLOR_FG_WHITE=%F{255}
+
+GIT_DIRTY_COLOR=%F{133}
+GIT_CLEAN_COLOR=%F{118}
+GIT_PROMPT_INFO=%F{012}
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" \u2b60 "
+ZSH_THEME_GIT_PROMPT_SUFFIX="$GIT_PROMPT_INFO"
+ZSH_THEME_GIT_PROMPT_DIRTY=" $GIT_DIRTY_COLOR✘"
+ZSH_THEME_GIT_PROMPT_CLEAN=" $GIT_CLEAN_COLOR✔"
+
+ZSH_THEME_GIT_PROMPT_ADDED="%F{082}✚%f"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%F{166}✹%f"
+ZSH_THEME_GIT_PROMPT_DELETED="%F{160}✖%f"
+ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
+
+DAVE_SEC1_BG=%K{green}
+DAVE_SEC1_FG=%F{green}
+DAVE_SEC1_TXT=%F{black}
+if [ "$DAVE_DETECT_SSH" != "" ]; then
+  if [ -n "$SSH_CLIENT" ]; then
+    DAVE_SEC1_BG=%K{red}
+    DAVE_SEC1_FG=%F{red}
+    DAVE_SEC1_TXT=%F{white}
+  fi
+fi
+PROMPT="$DAVE_HOST_BG$DAVE_HOST_FG ${(C)$(hostname -s)} $DAVE_HOSTUSER_BG$DAVE_HOSTUSER_FG"$'\u25B6'"$DAVE_USER_BG$DAVE_USER_FG %n %k%f$DAVE_USERDIR_BG$DAVE_USERDIR_FG"$'\u25B6'"%k%f$DAVE_DIR_BG$DAVE_DIR_FG "$DAVE_CURRENT_PATH" "$DAVE_GIT_INFO_LEFT"%k%f$DAVE_END_BG$DAVE_END_FG"$'\u25B6'"%f "
+
+if [ "$DAVE_NO_BLANK_LINE" = "" ]; then
+    PROMPT="
+"$PROMPT
+fi
+
+RPROMPT=$DAVE_GIT_INFO_RIGHT$DAVE_COLOR_FG_WHITE$'\u25C0'"%f$DAVE_COLOR_BG_WHITE $DAVE_COLOR_FG_GRAY$DAVE_RIGHT_B "$'\u25C0'"%f%k$DAVE_COLOR_BG_GRAY$DAVE_COLOR_FG_WHITE $DAVE_RIGHT_A %f%k"
