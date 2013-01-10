@@ -51,7 +51,7 @@ if [ -z $DAVE_COLOR_DIR_FG ]; then
 fi
 
 if [ -z $DAVE_COLOR_GIT_BG ]; then
-	DAVE_COLOR_GIT_BG='022'
+	DAVE_COLOR_GIT_BG='054'
 fi
 if [ -z $DAVE_COLOR_GIT_FG ]; then
 	DAVE_COLOR_GIT_FG='252'
