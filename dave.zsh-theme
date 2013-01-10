@@ -1,5 +1,7 @@
-# FreeAgent puts the powerline style in zsh !
-
+#
+#		Dave ZSH Prompt Theme
+#		 - Inspired by Powerline theme by FreeAgent
+#
 if [ "$DAVE_RIGHT_B" = "" ]; then
   DAVE_RIGHT_B=%D{%H:%M:%S}
 fi
@@ -14,10 +16,12 @@ if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
   DAVE_CURRENT_PATH="%1~"
 fi
 
+
 DAVE_GIT_INFO_LEFT=""
 DAVE_GIT_INFO_RIGHT="%F{red}"$''"%F{black}%K{red}"$'$(git_prompt_info)'" %f"
 if [ "$DAVE_SHOW_GIT_ON_RIGHT" = "" ]; then
     DAVE_GIT_INFO_LEFT=$'$(git_prompt_info)'
+#    DAVE_GIT_INFO_LEFT="%F{red}"$''"%F{black}%K{red}"$'$(git_prompt_info)'" %f"
     DAVE_GIT_INFO_RIGHT=""
 fi
 
@@ -46,6 +50,13 @@ if [ -z $DAVE_COLOR_DIR_FG ]; then
 	DAVE_COLOR_DIR_FG='252'
 fi
 
+if [ -z $DAVE_COLOR_GIT_BG ]; then
+	DAVE_COLOR_GIT_BG='022'
+fi
+if [ -z $DAVE_COLOR_GIT_FG ]; then
+	DAVE_COLOR_GIT_FG='252'
+fi
+
 if [ -z $DAVE_COLOR_END_BG ]; then
 	DAVE_COLOR_END_BG='000'
 fi
@@ -69,8 +80,18 @@ DAVE_USERDIR_FG=%F{$DAVE_COLOR_USER_BG}
 DAVE_DIR_BG=%K{$DAVE_COLOR_DIR_BG}
 DAVE_DIR_FG=%F{$DAVE_COLOR_DIR_FG}
 
+DAVE_DIRGIT_BG=%K{$DAVE_COLOR_GIT_BG}
+DAVE_DIRGIT_FG=%F{$DAVE_COLOR_DIR_BG}
+
+DAVE_GIT_BG=%K{$DAVE_COLOR_GIT_BG}
+DAVE_GIT_FG=%F{$DAVE_COLOR_GIT_FG}
+
+DAVE_GITEND_BG=%K{$DAVE_COLOR_END_BG}
+DAVE_GITEND_FG=%F{$DAVE_COLOR_GIT_BG}
+
 DAVE_END_BG=%K{$DAVE_COLOR_END_BG}
 DAVE_END_FG=%F{$DAVE_COLOR_DIR_BG}
+
 ############################################
 
 
@@ -87,8 +108,12 @@ GIT_DIRTY_COLOR=%F{133}
 GIT_CLEAN_COLOR=%F{118}
 GIT_PROMPT_INFO=%F{012}
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" \u2b60 "
-ZSH_THEME_GIT_PROMPT_SUFFIX="$GIT_PROMPT_INFO"
+#
+#	The $'\u0008' below is a backspace character.  It backs up one char over the END connector, and
+#		then we overwrite it with the GIt connector instead.
+#
+ZSH_THEME_GIT_PROMPT_PREFIX=$'\u0008'"$DAVE_DIRGIT_BG$DAVE_DIRGIT_FG"$'\u25B6'"$DAVE_GIT_BG$DAVE_GIT_BG "
+ZSH_THEME_GIT_PROMPT_SUFFIX=" $DAVE_GITEND_BG$DAVE_GITEND_FG"$'\u25B6'
 ZSH_THEME_GIT_PROMPT_DIRTY=" $GIT_DIRTY_COLOR✘"
 ZSH_THEME_GIT_PROMPT_CLEAN=" $GIT_CLEAN_COLOR✔"
 
@@ -109,8 +134,7 @@ if [ "$DAVE_DETECT_SSH" != "" ]; then
     DAVE_SEC1_TXT=%F{white}
   fi
 fi
-PROMPT="$DAVE_HOST_BG$DAVE_HOST_FG ${(C)$(hostname -s)} $DAVE_HOSTUSER_BG$DAVE_HOSTUSER_FG"$'\u25B6'"$DAVE_USER_BG$DAVE_USER_FG %n %k%f$DAVE_USERDIR_BG$DAVE_USERDIR_FG"$'\u25B6'"%k%f$DAVE_DIR_BG$DAVE_DIR_FG "$DAVE_CURRENT_PATH" "$DAVE_GIT_INFO_LEFT"%k%f$DAVE_END_BG$DAVE_END_FG"$'\u25B6'"%f "
-
+PROMPT="$DAVE_HOST_BG$DAVE_HOST_FG ${(C)$(hostname -s)} $DAVE_HOSTUSER_BG$DAVE_HOSTUSER_FG"$'\u25B6'"$DAVE_USER_BG$DAVE_USER_FG %n $DAVE_USERDIR_BG$DAVE_USERDIR_FG"$'\u25B6'"$DAVE_DIR_BG$DAVE_DIR_FG $DAVE_CURRENT_PATH $DAVE_END_BG$DAVE_END_FG▶$DAVE_GIT_INFO_LEFT %f%k"
 if [ "$DAVE_NO_BLANK_LINE" = "" ]; then
     PROMPT="
 "$PROMPT

@@ -1,8 +1,8 @@
 
 #
-#  POWERLINE COLORS OVERRIDE
+#  DAVE COLORS OVERRIDE
 #
-#    These will override the defualt theme color values
+#    These will override the default theme color values
 #
 DAVE_COLOR_HOST_BG='012'
 DAVE_COLOR_HOST_FG='252'
@@ -11,4 +11,6 @@ DAVE_COLOR_USER_FG='252'
 DAVE_COLOR_DIR_BG='022'
 DAVE_COLOR_DIR_FG='252'
 DAVE_COLOR_END_BG='000'
+DAVE_COLOR_GIT_BG='052'
+DAVE_COLOR_GIT_FG='252'
 
