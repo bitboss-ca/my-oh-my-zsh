@@ -38,12 +38,12 @@ function dave_svn_prompt_info {
 
 	SVN_REVISION_STRING=$(svn info 2> /dev/null | grep '^Revision*') || return
 	SVN_REVISION=$(echo $SVN_REVISION_STRING | sed 's/Revision: //' ) || return
-	SVN_RELATIVE_DIR=$(svn info | grep '^Working Copy Root Path*' | sed 's/Working Copy Root Path: //' 2> /dev/null) || return
+	SVN_RELATIVE_DIR=$(svn info | grep '^Working Copy Root Path*' | sed 's/Working Copy Root Path: //') || return
 	SVN_RELATIVE_DIR_ESCAPED=$(echo $SVN_RELATIVE_DIR | sed 's/\//\\\//g')
 	SVN_REPO_PATH="$( echo $wd | sed "s/${SVN_RELATIVE_DIR_ESCAPED}//g") "
 
 	# this is the slowest test of the bunch
-	change_count=`svn status | grep "^?\|\!\|M\|A" | wc -l | bc`
+	change_count=`svn status | grep "^?\|\!\|M\|A" | wc -l | awk '{print $1}'`
 	if [ "${change_count}" != '0' ]; then
 		svn_change="$ZSH_THEME_SVN_PROMPT_DIRTY"
 	else
