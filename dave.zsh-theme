@@ -31,10 +31,7 @@ fi
 ############################################
 function dave_svn_prompt_info {
 
-	wd=`pwd`
-	if [ $wd[0,5] = '/home' ]; then 
-		wd='/usr'$wd
-	fi
+	wd=`pwd -P`
 
 	SVN_REVISION_STRING=$(svn info 2> /dev/null | grep '^Revision*') || return
 	SVN_REVISION=$(echo $SVN_REVISION_STRING | sed 's/Revision: //' ) || return
