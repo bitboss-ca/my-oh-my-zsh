@@ -32,7 +32,7 @@ fi
 function dave_svn_prompt_info {
 
 	wd=`pwd`
-	if [ ${wd:0:5} = '/home' ]; then 
+	if [ $wd[0,5] = '/home' ]; then 
 		wd='/usr'$wd
 	fi
 
