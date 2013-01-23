@@ -86,6 +86,12 @@ fi
 if [ -z $DAVE_COLOR_END_BG ]; then
 	DAVE_COLOR_END_BG='000'
 fi
+if [ -z $DAVE_COLOR_GIT_CLEAN ]; then
+        DAVE_COLOR_GIT_CLEAN='118'
+fi
+if [ -z $DAVE_COLOR_GIT_DIRTY ]; then
+        DAVE_COLOR_GIT_DIRTY='133'
+fi
 
 ############################################
 #	New Colors Setup
@@ -108,6 +114,8 @@ DAVE_GITEND_BG=%K{$DAVE_COLOR_END_BG}
 DAVE_GITEND_FG=%F{$DAVE_COLOR_GIT_BG}
 DAVE_END_BG=%K{$DAVE_COLOR_END_BG}
 DAVE_END_FG=%F{$DAVE_COLOR_DIR_BG}
+GIT_CLEAN_COLOR=%F{$DAVE_COLOR_GIT_CLEAN}
+GIT_DIRTY_COLOR=%F{$DAVE_COLOR_GIT_DIRTY}
 
 ############################################
 #	Other Colors
@@ -118,8 +126,6 @@ DAVE_COLOR_BG_WHITE=%K{255}
 DAVE_COLOR_FG_GRAY=%F{240}
 DAVE_COLOR_FG_LIGHT_GRAY=%F{240}
 DAVE_COLOR_FG_WHITE=%F{255}
-GIT_DIRTY_COLOR=%F{133}
-GIT_CLEAN_COLOR=%F{118}
 GIT_PROMPT_INFO=%F{012}
 
 ############################################
