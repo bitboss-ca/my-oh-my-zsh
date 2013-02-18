@@ -1,6 +1,18 @@
+############################################
+#
+#		My Oh My ZSH
+#
+#		Features
+#		 - A simple way of separately maintaining themes for oh-my-zsh.
+#		 - Ccustomize color palettes for themes.
+#
+#		Notes:
+#		 - Requires Oh My ZSH: https://github.com/robbyrussell/oh-my-zsh
+#
+############################################
 
 #
-#	Link my theme file into place
+#	Link my theme file(s) into place
 #
 for i in $HOME/.my-oh-my-zsh/*.zsh-theme; do
 	if [ ! -f $HOME/.oh-my-zsh/themes/$(basename $i) ]; then
