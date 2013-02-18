@@ -1,30 +1,21 @@
-#
-#		Dave ZSH Prompt Theme
-#		 - Inspired by Powerline theme by FreeAgent
-#
-if [ "$DAVE_RIGHT_B" = "" ]; then
-  DAVE_RIGHT_B=%D{%H:%M:%S}
-fi
+############################################
+#	Dave ZSH Prompt Theme
+#	 - Inspired by Powerline theme by FreeAgent
+############################################
 
-if [ "$DAVE_RIGHT_A" = "" ]; then
-  DAVE_RIGHT_A=%D{%Y-%m-%d}
+############################################
+#	Date / Time / Path
+############################################
+if [ "$DAVE_RPROMPT_TIME" = "" ]; then
+  DAVE_RPROMPT_TIME=%D{%H:%M:%S}
 fi
-
+if [ "$DAVE_RPROMPT_DATE" = "" ]; then
+  DAVE_RPROMPT_DATE=%D{%Y-%m-%d}
+fi
 DAVE_CURRENT_PATH="%d"
-
 if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
   DAVE_CURRENT_PATH="%1~"
 fi
-
-
-DAVE_GIT_INFO_LEFT=""
-DAVE_GIT_INFO_RIGHT="%F{red}"$''"%F{black}%K{red}"$'$(git_prompt_info)'" %f"
-if [ "$DAVE_SHOW_GIT_ON_RIGHT" = "" ]; then
-    DAVE_GIT_INFO_LEFT=$'$(git_prompt_info)'
-#    DAVE_GIT_INFO_LEFT="%F{red}"$''"%F{black}%K{red}"$'$(git_prompt_info)'" %f"
-    DAVE_GIT_INFO_RIGHT=""
-fi
-
 
 ############################################
 #	Subversion Prompt
@@ -48,16 +39,25 @@ function dave_svn_prompt_info {
 	fi
 
 	# Set the Prompt String	
-	echo "$ZSH_THEME_SVN_PROMPT_PREFIX$SVN_REPO_PATH[2,-1]"'r'"$SVN_REVISION$svn_change$ZSH_THEME_SVN_PROMPT_SUFFIX"
+	echo "$ZSH_THEME_SVN_PROMPT_PREFIX$SVN_REPO_PATH[2,-1]"'r'"$SVN_REVISION%{${svn_change}%}$ZSH_THEME_SVN_PROMPT_SUFFIX"
 }
 #
 #	This puts the literal string $(dave_svn_prompt_info) right into the prompt, meaning it will run at every prompt
 #
 DAVE_SVN_INFO_LEFT=$'$(dave_svn_prompt_info)'
 
+############################################
+#	Date / Time / Display Defaults
+############################################
+if [ -z $DAVE_SHOW_DATE ]; then
+	DAVE_SHOW_DATE='YES'
+fi
+if [ -z $DAVE_SHOW_TIME ]; then
+	DAVE_SHOW_TIME='YES'
+fi
 
 ############################################
-#	New Colors Config
+#	Color Defaults
 ############################################
 if [ -z $DAVE_COLOR_HOST_BG ]; then
 	DAVE_COLOR_HOST_BG='012'
@@ -87,14 +87,26 @@ if [ -z $DAVE_COLOR_END_BG ]; then
 	DAVE_COLOR_END_BG='000'
 fi
 if [ -z $DAVE_COLOR_GIT_CLEAN ]; then
-        DAVE_COLOR_GIT_CLEAN='118'
+	DAVE_COLOR_GIT_CLEAN='118'
 fi
 if [ -z $DAVE_COLOR_GIT_DIRTY ]; then
-        DAVE_COLOR_GIT_DIRTY='133'
+	DAVE_COLOR_GIT_DIRTY='133'
+fi
+if [ -z $DAVE_COLOR_DATE_FG ]; then
+	DAVE_COLOR_DATE_FG='255'
+fi
+if [ -z $DAVE_COLOR_DATE_BG ]; then
+	DAVE_COLOR_DATE_BG='240'
+fi
+if [ -z $DAVE_COLOR_TIME_FG ]; then
+	DAVE_COLOR_TIME_FG='240'
+fi
+if [ -z $DAVE_COLOR_TIME_BG ]; then
+	DAVE_COLOR_TIME_BG='255'
 fi
 
 ############################################
-#	New Colors Setup
+#	Color Setup
 ############################################
 DAVE_HOST_BG=%K{$DAVE_COLOR_HOST_BG}
 DAVE_HOST_FG=%F{$DAVE_COLOR_HOST_FG}
@@ -116,25 +128,22 @@ DAVE_END_BG=%K{$DAVE_COLOR_END_BG}
 DAVE_END_FG=%F{$DAVE_COLOR_DIR_BG}
 GIT_CLEAN_COLOR=%F{$DAVE_COLOR_GIT_CLEAN}
 GIT_DIRTY_COLOR=%F{$DAVE_COLOR_GIT_DIRTY}
+DAVE_DATE_FG=%F{$DAVE_COLOR_DATE_FG}
+DAVE_DATE_BG=%K{$DAVE_COLOR_DATE_BG}
+DAVE_TIME_FG=%F{$DAVE_COLOR_TIME_FG}
+DAVE_TIME_BG=%K{$DAVE_COLOR_TIME_BG}
+DAVE_TIMEDATE_FG=%F{$DAVE_COLOR_DATE_BG}
+DAVE_TIMEDATE_BG=%K{$DAVE_COLOR_TIME_BG}
+DAVE_TIMEEND_FG=%F{$DAVE_COLOR_TIME_BG}
+DAVE_TIMEEND_BG=%K{$DAVE_COLOR_END_BG}
+DAVE_DATEEND_FG=%F{$DAVE_COLOR_DATE_BG}
+DAVE_DATEEND_BG=%K{$DAVE_COLOR_END_BG}
 
 ############################################
-#	Other Colors
-############################################
-DAVE_COLOR_BG_GRAY=%K{240}
-DAVE_COLOR_BG_LIGHT_GRAY=%K{240}
-DAVE_COLOR_BG_WHITE=%K{255}
-DAVE_COLOR_FG_GRAY=%F{240}
-DAVE_COLOR_FG_LIGHT_GRAY=%F{240}
-DAVE_COLOR_FG_WHITE=%F{255}
-GIT_PROMPT_INFO=%F{012}
-
-############################################
-#
 # Git Prompt Setup
-#
 ############################################
 #
-#	The $'\u0008' below is a backspace character.  It backs up one char over the END connector, and
+#	The (dollar)'\u0008' below is a backspace character.  It backs up one char over the END connector, and
 #		then we overwrite it with the GIt connector instead.
 #
 ZSH_THEME_GIT_PROMPT_PREFIX=$'\u0008'"$DAVE_DIRGIT_BG$DAVE_DIRGIT_FG"$'\u25B6'"$DAVE_GIT_BG$DAVE_GIT_FG "
@@ -149,35 +158,63 @@ ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
 ############################################
-#
 # Subversion Prompt Setup
-#
 ############################################
 #
-#	The $'\u0008' below is a backspace character.  It backs up one char over the END connector, and
+#	The (dollar)'\u0008' below is a backspace character.  It backs up one char over the END connector, and
 #		then we overwrite it with the GIt connector instead.
 #
-ZSH_THEME_SVN_PROMPT_PREFIX=$'\u0008'"$DAVE_DIRGIT_BG$DAVE_DIRGIT_FG"$'\u25B6'"$DAVE_GIT_BG$DAVE_GIT_FG "
-ZSH_THEME_SVN_PROMPT_SUFFIX=" $DAVE_GITEND_BG$DAVE_GITEND_FG"$'\u25B6'
-ZSH_THEME_SVN_PROMPT_DIRTY=" $GIT_DIRTY_COLOR✘"
-ZSH_THEME_SVN_PROMPT_CLEAN=" $GIT_CLEAN_COLOR✔"
+ZSH_THEME_SVN_PROMPT_PREFIX=$'\u0008'"%{${DAVE_DIRGIT_BG}%}%{${DAVE_DIRGIT_FG}%}"$'\u25B6'"%{${DAVE_GIT_BG}%}%{${DAVE_GIT_FG}%} "
+ZSH_THEME_SVN_PROMPT_SUFFIX=" %{${DAVE_GITEND_BG}%}%{${DAVE_GITEND_FG}%}"$'\u25B6'
+ZSH_THEME_SVN_PROMPT_DIRTY=" %{${GIT_DIRTY_COLOR}%}"$'\u2717'
+ZSH_THEME_SVN_PROMPT_CLEAN=" %{${GIT_CLEAN_COLOR}%}"$'\u2714'
 
-
-
-DAVE_SEC1_BG=%K{green}
-DAVE_SEC1_FG=%F{green}
-DAVE_SEC1_TXT=%F{black}
-if [ "$DAVE_DETECT_SSH" != "" ]; then
-  if [ -n "$SSH_CLIENT" ]; then
-    DAVE_SEC1_BG=%K{red}
-    DAVE_SEC1_FG=%F{red}
-    DAVE_SEC1_TXT=%F{white}
-  fi
-fi
-PROMPT="$DAVE_HOST_BG$DAVE_HOST_FG ${(C)$(hostname -s)} $DAVE_HOSTUSER_BG$DAVE_HOSTUSER_FG"$'\u25B6'"$DAVE_USER_BG$DAVE_USER_FG %n $DAVE_USERDIR_BG$DAVE_USERDIR_FG"$'\u25B6'"$DAVE_DIR_BG$DAVE_DIR_FG $DAVE_CURRENT_PATH $DAVE_END_BG$DAVE_END_FG▶$DAVE_GIT_INFO_LEFT$DAVE_SVN_INFO_LEFT %f%k"
+############################################
+# Left Prompt
+############################################
+PROMPT="%{${DAVE_HOST_BG}%}%{${DAVE_HOST_FG}%}"
+PROMPT="${PROMPT} ${(C)$(hostname -s)} "
+PROMPT="${PROMPT}%{${DAVE_HOSTUSER_BG}%}%{${DAVE_HOSTUSER_FG}%}"
+PROMPT="${PROMPT}"$'\u25B6'
+PROMPT="${PROMPT}%{${DAVE_USER_BG}%}%{${DAVE_USER_FG}%}"
+PROMPT="${PROMPT} %n "
+PROMPT="${PROMPT}%{${DAVE_USERDIR_BG}%}%{${DAVE_USERDIR_FG}%}"
+PROMPT="${PROMPT}"$'\u25B6'
+PROMPT="${PROMPT}%{${DAVE_DIR_BG}%}%{${DAVE_DIR_FG}%}"
+PROMPT="${PROMPT} ${DAVE_CURRENT_PATH} "
+PROMPT="${PROMPT}%{${DAVE_END_BG}%}%{${DAVE_END_FG}%}"
+PROMPT="${PROMPT}"$'\u25B6'
+PROMPT="${PROMPT}${DAVE_GIT_INFO_LEFT}${DAVE_SVN_INFO_LEFT}"
+PROMPT="${PROMPT} %f%k"
 if [ "$DAVE_NO_BLANK_LINE" = "" ]; then
     PROMPT="
-"$PROMPT
+${PROMPT}"
 fi
 
-RPROMPT=$DAVE_GIT_INFO_RIGHT$DAVE_COLOR_FG_WHITE$'\u25C0'"%f$DAVE_COLOR_BG_WHITE $DAVE_COLOR_FG_GRAY$DAVE_RIGHT_B "$'\u25C0'"%f%k$DAVE_COLOR_BG_GRAY$DAVE_COLOR_FG_WHITE $DAVE_RIGHT_A %f%k"
+############################################
+# Right Prompt
+############################################
+if [ $DAVE_SHOW_DATE = 'YES' ] || [ $DAVE_SHOW_TIME = 'YES' ]; then
+	RPROMPT=''
+	if [ $DAVE_SHOW_TIME = 'YES' ]; then
+		RPROMPT="${RPROMPT}%{${DAVE_TIMEEND_BG}%}%{${DAVE_TIMEEND_FG}%}"
+		RPROMPT="${RPROMPT}"$'\u25C0'
+                RPROMPT="${RPROMPT}%{${DAVE_TIME_BG}%}%{${DAVE_TIME_FG}%}"
+                RPROMPT="${RPROMPT} ${DAVE_RPROMPT_TIME} "
+	fi
+	if [ $DAVE_SHOW_DATE = 'YES' ]; then
+		if [ $DAVE_SHOW_TIME = 'YES' ]; then
+			RPROMPT="${RPROMPT}%{${DAVE_TIMEDATE_BG}%}%{${DAVE_TIMEDATE_FG}%}"
+                	RPROMPT="${RPROMPT}"$'\u25C0'
+		else
+			RPROMPT="${RPROMPT}%{${DAVE_DATEEND_BG}%}%{${DAVE_DATEEND_FG}%}"
+	                RPROMPT="${RPROMPT}"$'\u25C0'
+		fi
+		RPROMPT="${RPROMPT}%{${DAVE_DATE_BG}%}%{${DAVE_DATE_FG}%}"
+		RPROMPT="${RPROMPT} ${DAVE_RPROMPT_DATE} "
+                RPROMPT="${RPROMPT}%f%k"
+	fi
+else
+	RPROMPT=''
+fi
+
