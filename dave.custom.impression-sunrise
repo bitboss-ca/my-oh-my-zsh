@@ -1,8 +1,6 @@
-
 #
-#  DAVE COLORS OVERRIDE
-#
-#    - Uncomment and define for custom color scheme
+#  DAVE COLOR PALETTE: impression-sunrise
+#	 - http://www.colourlovers.com/palette/550328/Monet_Sunrise
 #
 DAVE_COLOR_HOST_BG='022'
 DAVE_COLOR_HOST_FG='015'

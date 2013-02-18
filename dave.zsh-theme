@@ -1,6 +1,6 @@
 ############################################
 #	Dave ZSH Prompt Theme
-#	 - Inspired by Powerline theme by FreeAgent
+#	 - Inspired by Powerline theme by FreeAgent: https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme
 ############################################
 
 ############################################
@@ -16,6 +16,11 @@ DAVE_CURRENT_PATH="%d"
 if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
   DAVE_CURRENT_PATH="%1~"
 fi
+
+############################################
+#	Subversion Prompt
+############################################
+DAVE_GIT_INFO_LEFT=$'$(git_prompt_info)'
 
 ############################################
 #	Subversion Prompt
