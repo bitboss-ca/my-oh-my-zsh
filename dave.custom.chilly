@@ -1,8 +1,5 @@
-
 #
-#  DAVE COLORS OVERRIDE
-#
-#    - Uncomment and define for custom color scheme
+#  DAVE COLOR PALETTE: chilly
 #
 DAVE_COLOR_HOST_BG='004'
 DAVE_COLOR_HOST_FG='255'
