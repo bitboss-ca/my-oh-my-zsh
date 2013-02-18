@@ -7,7 +7,7 @@ Oh My ZSH: https://github.com/robbyrussell/oh-my-zsh
 
 Screenshot
 ----------
-![screenshot](https://github.com/daveish/my-oh-my-zsh/blob/master/screenshot.png)
+![screenshot](https://raw.github.com/daveish/my-oh-my-zsh/master/screenshot.png)
 
 Features
 --------
