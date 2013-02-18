@@ -19,4 +19,6 @@ Clone the repo:
 Add this to .zshrc (before the call to oh-my-zsh)
 > source $HOME/.my-oh-my-zsh/my-oh-my-zsh.sh
 
+Link A Color Palette:
+> cd .my-oh-my-zsh && ln -s dave.custom.hot-rod dave.custom
 
