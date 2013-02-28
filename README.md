@@ -12,7 +12,7 @@ Screenshot
 Features
 --------
 - A simple way of separately maintaining themes for oh-my-zsh.
-- Ccustomize color palettes for themes.
+- Customize color palettes for themes.
 
 Setup
 -----
