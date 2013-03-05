@@ -14,13 +14,13 @@ if [ "$DAVE_RPROMPT_DATE" = "" ]; then
 fi
 DAVE_CURRENT_PATH="%d"
 if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
-  DAVE_CURRENT_PATH="%1~"
+  DAVE_CURRENT_PATH="~"
 fi
 
 ############################################
-#	Subversion Prompt
+#	Git Prompt
 ############################################
-DAVE_GIT_INFO_LEFT=$'$(git_prompt_info)'
+DAVE_GIT_INFO_LEFT='$(git_prompt_info)'
 
 ############################################
 #	Subversion Prompt
@@ -49,7 +49,7 @@ function dave_svn_prompt_info {
 #
 #	This puts the literal string $(dave_svn_prompt_info) right into the prompt, meaning it will run at every prompt
 #
-DAVE_SVN_INFO_LEFT=$'$(dave_svn_prompt_info)'
+DAVE_SVN_INFO_LEFT='$(dave_svn_prompt_info)'
 
 ############################################
 #	Date / Time / Display Defaults
@@ -151,16 +151,16 @@ DAVE_DATEEND_BG=%K{$DAVE_COLOR_END_BG}
 #	The (dollar)'\u0008' below is a backspace character.  It backs up one char over the END connector, and
 #		then we overwrite it with the GIt connector instead.
 #
-ZSH_THEME_GIT_PROMPT_PREFIX=$'\u0008'"$DAVE_DIRGIT_BG$DAVE_DIRGIT_FG"$'\u25B6'"$DAVE_GIT_BG$DAVE_GIT_FG "
-ZSH_THEME_GIT_PROMPT_SUFFIX=" $DAVE_GITEND_BG$DAVE_GITEND_FG"$'\u25B6'
-ZSH_THEME_GIT_PROMPT_DIRTY=" $GIT_DIRTY_COLOR✘"
-ZSH_THEME_GIT_PROMPT_CLEAN=" $GIT_CLEAN_COLOR✔"
-ZSH_THEME_GIT_PROMPT_ADDED="%F{082}✚%f"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%F{166}✹%f"
-ZSH_THEME_GIT_PROMPT_DELETED="%F{160}✖%f"
-ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
+ZSH_THEME_GIT_PROMPT_PREFIX=$'\u0008'"%{${DAVE_DIRGIT_BG}%}%{${DAVE_DIRGIT_FG}%}"$'\u25B6'"%{${DAVE_GIT_BG}%}%{${DAVE_GIT_FG}%} "
+ZSH_THEME_GIT_PROMPT_SUFFIX=" %{${DAVE_GITEND_BG}%}%{${DAVE_GITEND_FG}%}"$'\u25B6'
+ZSH_THEME_GIT_PROMPT_DIRTY="%{ %{${GIT_DIRTY_COLOR}%}"$'\u2717'"%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{ %{${GIT_CLEAN_COLOR}%}"$'\u2714'"%}"
+#ZSH_THEME_GIT_PROMPT_ADDED="%F{082}✚%f"
+#ZSH_THEME_GIT_PROMPT_MODIFIED="%F{166}✹%f"
+#ZSH_THEME_GIT_PROMPT_DELETED="%F{160}✖%f"
+#ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
+#ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
+#ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
 ############################################
 # Subversion Prompt Setup
