@@ -12,6 +12,23 @@
 ############################################
 
 #
+# Check for updates on initial load...
+#
+if [ "$DISABLE_AUTO_UPDATE" != "true" ]
+then
+	cd $HOME/.my-oh-my-zsh
+	git remote update > /dev/null
+	if [ ! -z $( git status -uno |grep behind ) ]; then
+		echo -n 'Type Y to update My oh my ZSH: Y/n: '
+		read x < dev/tty
+		if [ "$x" = Y ] || [ "$x" = y ]; then
+			git pull
+			cd
+		fi
+	fi
+fi
+
+#
 #	Link my theme file(s) into place
 #
 for i in $HOME/.my-oh-my-zsh/*.zsh-theme; do
@@ -32,3 +49,5 @@ done
 if [ -f $HOME/.my-oh-my-zsh/$ZSH_THEME.custom ]; then
 	. $HOME/.my-oh-my-zsh/$ZSH_THEME.custom
 fi
+
+
