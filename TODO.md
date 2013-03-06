@@ -6,7 +6,7 @@ when using tab completion.  It only occurs when in a git repo.</del>
 * Add auto-updater.
 ** Auto-updater should only prompt when repo is behind, and perhaps only when a new tag appears.
 ** Experiment with various ways to check for update without too much overhead.
-**
+** Test prompt to update on login.
  
 
 
