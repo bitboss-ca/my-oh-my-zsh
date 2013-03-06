@@ -12,7 +12,7 @@
 ############################################
 
 #
-# Check for updates on initial load...
+# Check for updates on load...
 #
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]
 then
@@ -20,7 +20,7 @@ then
 	git remote update > /dev/null
 	if [ -n "$( git status -uno | grep behind )" ]; then
 		echo -n 'Type Y to update My oh my ZSH: Y/n: '
-		read x < dev/tty
+		read x
 		if [ "$x" = Y ] || [ "$x" = y ]; then
 			git pull
 		fi
