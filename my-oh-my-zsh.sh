@@ -23,9 +23,9 @@ then
 		read x < dev/tty
 		if [ "$x" = Y ] || [ "$x" = y ]; then
 			git pull
-			cd
 		fi
 	fi
+	cd
 fi
 
 #
