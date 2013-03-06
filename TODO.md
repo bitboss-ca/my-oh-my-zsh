@@ -8,6 +8,7 @@ when using tab completion.  It only occurs when in a git repo.</del>
 ** Experiment with various ways to check for update without too much overhead.
 ** Test prompt to update on login.
 ** Test the check for repo behind remote.
+** Test correction for response to prompt to update.
  
 
 
