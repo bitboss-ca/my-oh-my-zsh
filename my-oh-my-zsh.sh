@@ -17,7 +17,7 @@
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]
 then
 	cd $HOME/.my-oh-my-zsh
-	git remote update > /dev/null
+	git remote update > /dev/null 2>&1
 	if [ -n "$( git status -uno | grep behind )" ]; then
 		echo -n 'Type Y to update My Oh My ZSH: Y/n: '
 		read x
