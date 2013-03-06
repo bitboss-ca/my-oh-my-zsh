@@ -4,7 +4,7 @@
 ############################################
 
 ############################################
-#	Date / Time / Path
+#	Date / Time
 ############################################
 if [ "$DAVE_RPROMPT_TIME" = "" ]; then
   DAVE_RPROMPT_TIME=%D{%H:%M:%S}
@@ -12,10 +12,20 @@ fi
 if [ "$DAVE_RPROMPT_DATE" = "" ]; then
   DAVE_RPROMPT_DATE=%D{%Y-%m-%d}
 fi
-DAVE_CURRENT_PATH="%d"
-if [ "$DAVE_FULL_CURRENT_PATH" = "" ]; then
-  DAVE_CURRENT_PATH="~"
-fi
+
+############################################
+# Path
+############################################
+function dave_dir_prompt_info {
+	DAVE_PWD=`pwd`
+	if [[ ~ == "${DAVE_PWD}" ]]; then
+		DAVE_DIRNAME="~"
+	else
+		DAVE_DIRNAME=$(basename "${DAVE_PWD}")
+	fi
+	echo $DAVE_DIRNAME;
+}
+DAVE_DIR_INFO='$(dave_dir_prompt_info)'
 
 ############################################
 #	Git Prompt
@@ -186,7 +196,7 @@ PROMPT="${PROMPT} %n "
 PROMPT="${PROMPT}%{${DAVE_USERDIR_BG}%}%{${DAVE_USERDIR_FG}%}"
 PROMPT="${PROMPT}"$'\u25B6'
 PROMPT="${PROMPT}%{${DAVE_DIR_BG}%}%{${DAVE_DIR_FG}%}"
-PROMPT="${PROMPT} ${DAVE_CURRENT_PATH} "
+PROMPT="${PROMPT} ${DAVE_DIR_INFO} "
 PROMPT="${PROMPT}%{${DAVE_END_BG}%}%{${DAVE_END_FG}%}"
 PROMPT="${PROMPT}"$'\u25B6'
 PROMPT="${PROMPT}${DAVE_GIT_INFO_LEFT}${DAVE_SVN_INFO_LEFT}"
