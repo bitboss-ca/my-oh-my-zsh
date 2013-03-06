@@ -4,7 +4,7 @@
 #
 #		Features
 #		 - A simple way of separately maintaining themes for oh-my-zsh.
-#		 - Ccustomize color palettes for themes.
+#		 - Customize color palettes for themes.
 #
 #		Notes:
 #		 - Requires Oh My ZSH: https://github.com/robbyrussell/oh-my-zsh
@@ -12,14 +12,14 @@
 ############################################
 
 #
-# Check for updates on load...
+# Check for updates
 #
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]
 then
 	cd $HOME/.my-oh-my-zsh
 	git remote update > /dev/null
 	if [ -n "$( git status -uno | grep behind )" ]; then
-		echo -n 'Type Y to update My oh my ZSH: Y/n: '
+		echo -n 'Type Y to update My Oh My ZSH: Y/n: '
 		read x
 		if [ "$x" = Y ] || [ "$x" = y ]; then
 			git pull
