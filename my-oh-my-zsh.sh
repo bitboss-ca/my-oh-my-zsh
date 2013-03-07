@@ -16,6 +16,7 @@
 #
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]
 then
+	CURDIR=`pwd`
 	cd $HOME/.my-oh-my-zsh
 	git remote update > /dev/null 2>&1
 	if [ -n "$( git status -uno | grep behind )" ]; then
@@ -25,7 +26,7 @@ then
 			git pull
 		fi
 	fi
-	cd
+	cd $CURDIR
 fi
 
 #
