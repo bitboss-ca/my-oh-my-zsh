@@ -34,6 +34,7 @@ fi
 LASTUPDATE=$( cat $HOME/.my-oh-my-zsh/.lastupdate )
 if [ "$DISABLE_AUTO_UPDATE" != "true" ] && [ $NOW -gt $[ $LASTUPDATE + 864000 ] ]
 then
+	echo `date "+%s"` > $HOME/.my-oh-my-zsh/.lastupdate
 	CURDIR=`pwd`
 	cd $HOME/.my-oh-my-zsh
 	git remote update > /dev/null 2>&1
@@ -44,7 +45,6 @@ then
 			_my_oh_my_zsh_banner
 			git pull
 			echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-			echo `date "+%s"` > $HOME/.my-oh-my-zsh/.lastupdate
 		fi
 	fi
 	cd $CURDIR
