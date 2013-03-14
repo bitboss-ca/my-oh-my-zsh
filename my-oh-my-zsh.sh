@@ -26,7 +26,13 @@ EOT
 #
 # Check for updates
 #
-if [ "$DISABLE_AUTO_UPDATE" != "true" ]
+NOW=$( date "+%s" )
+LASTUPDATEFILE="${HOME}/.my-oh-my-zsh/.lastupdate"
+if [ -f $HOME/.my-oh-my-zsh/.lastupdate ]; then
+	echo $NOW > $HOME/.my-oh-my-zsh/.lastupdate
+fi
+LASTUPDATE=$( cat $HOME/.my-oh-my-zsh/.lastupdate )
+if [ "$DISABLE_AUTO_UPDATE" != "true" ] && [ $NOW -gt $[ $LASTUPDATE + 864000 ] ]
 then
 	CURDIR=`pwd`
 	cd $HOME/.my-oh-my-zsh
@@ -38,6 +44,7 @@ then
 			_my_oh_my_zsh_banner
 			git pull
 			echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+			echo `date "+%s"` > $HOME/.my-oh-my-zsh/.lastupdate
 		fi
 	fi
 	cd $CURDIR
