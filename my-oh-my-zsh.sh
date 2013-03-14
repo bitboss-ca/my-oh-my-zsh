@@ -28,7 +28,7 @@ EOT
 #
 NOW=$( date "+%s" )
 LASTUPDATEFILE="${HOME}/.my-oh-my-zsh/.lastupdate"
-if [ -f $HOME/.my-oh-my-zsh/.lastupdate ]; then
+if [ ! -f $HOME/.my-oh-my-zsh/.lastupdate ]; then
 	echo $NOW > $HOME/.my-oh-my-zsh/.lastupdate
 fi
 LASTUPDATE=$( cat $HOME/.my-oh-my-zsh/.lastupdate )
