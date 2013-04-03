@@ -41,7 +41,7 @@ function dave_svn_prompt_info {
 
 	SVN_WORKING_COPY_ROOT_PATH_STRING=$( svn info 2> /dev/null | grep '^Working Copy Root Path*' 2> /dev/null ) || return
 	SVN_RELATIVE_DIR=$( echo $SVN_WORKING_COPY_ROOT_PATH_STRING | cut -d' ' -f 5 2> /dev/null) || return
-	SVN_RELATIVE_DIR_ESCAPED=$(echo $SVN_RELATIVE_DIR | sed --posix 's/\//\\\//g')
+	SVN_RELATIVE_DIR_ESCAPED=$(echo $SVN_RELATIVE_DIR | sed 's/\//\\\//g')
 	SVN_REPO_PATH="$( echo $wd | sed --posix "s/${SVN_RELATIVE_DIR_ESCAPED}//g") "
 
 	SVN_REVISION_STRING=$(svn info 2> /dev/null | grep '^Revision*') || return
