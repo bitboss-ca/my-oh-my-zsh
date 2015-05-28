@@ -1,3 +1,6 @@
 dave.custom
 .lastupdate
 
+# OSX Cruft
+._*
+
