@@ -11,6 +11,9 @@
 #
 ############################################
 
+#
+#	Banner
+#
 _my_oh_my_zsh_banner() {
 	
 	echo '\033[38;5;045m''+-----------------+------------------+-------------------+----------------------+' '\033[0m'
@@ -21,6 +24,18 @@ _my_oh_my_zsh_banner() {
 	echo '\033[38;5;032m''|          |__/   |                  |            |__/   |                      |' '\033[0m'
 	echo '\033[38;5;027m''+-----------------+------------------+-------------------+----------------------+' '\033[0m'
 	
+}
+
+#
+#	Utilities
+#
+alias prompts='echo " "; PREVPROMPT=$( readlink .my-oh-my-zsh/dave.custom | cut -d'.' -f 3 ); cd ~/.my-oh-my-zsh; for i in dave.custom.*; do PRNAME=$( echo $i | cut -d'.' -f 3 ); unlink dave.custom; ln -s $i dave.custom; source $HOME/.my-oh-my-zsh/my-oh-my-zsh.sh > /dev/null; source $ZSH/oh-my-zsh.sh > /dev/null; echo -n "${PRNAME}:"; print -P $PROMPT; echo " "; done; unlink dave.custom; ln -s dave.custom.$PREVPROMPT dave.custom; source ~/.zshrc > /dev/null; cd ~ > /dev/null 2>&1'
+reprompt() {
+	cd ~/.my-oh-my-zsh;
+	unlink dave.custom
+	ln -s dave.custom.$1 dave.custom
+	source ~/.zshrc > /dev/null
+	cd ~ > /dev/null 2>&1
 }
 
 #
