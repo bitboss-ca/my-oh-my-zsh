@@ -21,21 +21,13 @@ _my_oh_my_zsh_banner() {
 	MOMZ_TAG_USER="\033[${MOMZ_BANNER_STYLE_BG};${DAVE_COLOR_USER_BG}m\033[${MOMZ_BANNER_STYLE_FG};${DAVE_COLOR_USER_FG}m"
 	MOMZ_TAG_DIR="\033[${MOMZ_BANNER_STYLE_BG};${DAVE_COLOR_DIR_BG}m\033[${MOMZ_BANNER_STYLE_FG};${DAVE_COLOR_DIR_FG}m"
 	MOMZ_TAG_GIT="\033[${MOMZ_BANNER_STYLE_BG};${DAVE_COLOR_GIT_BG}m\033[${MOMZ_BANNER_STYLE_FG};${DAVE_COLOR_GIT_FG}m"
-	echo "${MOMZ_TAG_HOST}+-----------------+${MOMZ_TAG_USER}------------------+${MOMZ_TAG_DIR}-------------------+${MOMZ_TAG_GIT}----------------------+"'\033[0m'
-	echo "${MOMZ_TAG_HOST}|   __  __        |${MOMZ_TAG_USER}      ___  _      |${MOMZ_TAG_DIR}     __  __        |${MOMZ_TAG_GIT}     _______ _  _ _   |"'\033[0m'
-	echo -n "${MOMZ_TAG_HOST}"
-	echo -n '|  |  \/  |_  _    \'
-	echo -n "${MOMZ_TAG_USER}"
-	echo -n '    / _ \| |_     \'
-	echo -n "${MOMZ_TAG_DIR}"
-	echo -n '   |  \/  |_  _    \'
-	echo -n "${MOMZ_TAG_GIT}"
-	echo -n '   |_  / __| || | |   \'
-	echo '\033[0m'
-	echo "${MOMZ_TAG_HOST}|  | |\/| | || |    >${MOMZ_TAG_USER}  | (_) | ' \     >${MOMZ_TAG_DIR}  | |\/| | || |    >${MOMZ_TAG_GIT}   / /\__ \ __ |_|    >"'\033[0m'
-	echo "${MOMZ_TAG_HOST}|  |_|  |_|\_, |   /${MOMZ_TAG_USER}    \___/|_||_|   /${MOMZ_TAG_DIR}   |_|  |_|\_, |   /${MOMZ_TAG_GIT}   /___|___/_||_(_)   /"'\033[0m'
-	echo "${MOMZ_TAG_HOST}|          |__/   |${MOMZ_TAG_USER}                  |${MOMZ_TAG_DIR}            |__/   |${MOMZ_TAG_GIT}                      |"'\033[0m'
-	echo "${MOMZ_TAG_HOST}+-----------------+${MOMZ_TAG_USER}------------------+${MOMZ_TAG_DIR}-------------------+${MOMZ_TAG_GIT}----------------------+"'\033[0m'
+	echo "${MOMZ_TAG_HOST}                   ${MOMZ_TAG_USER}                   ${MOMZ_TAG_DIR}                    ${MOMZ_TAG_GIT}                       "'\033[0m'
+	echo "${MOMZ_TAG_HOST}    __  __         ${MOMZ_TAG_USER}      ___  _       ${MOMZ_TAG_DIR}     __  __         ${MOMZ_TAG_GIT}     _______ _  _ _    "'\033[0m'
+	echo "${MOMZ_TAG_HOST}   |  \/  |_  _     ${MOMZ_TAG_USER}    / _ \| |_      ${MOMZ_TAG_DIR}   |  \/  |_  _     ${MOMZ_TAG_GIT}   |_  / __| || | |    "'\033[0m'
+	echo "${MOMZ_TAG_HOST}   | |\/| | || |     ${MOMZ_TAG_USER}  | (_) | ' \      ${MOMZ_TAG_DIR}  | |\/| | || |     ${MOMZ_TAG_GIT}   / /\__ \ __ |_|     "'\033[0m'
+	echo "${MOMZ_TAG_HOST}   |_|  |_|\_, |    ${MOMZ_TAG_USER}    \___/|_||_|    ${MOMZ_TAG_DIR}   |_|  |_|\_, |    ${MOMZ_TAG_GIT}   /___|___/_||_(_)    "'\033[0m'
+	echo "${MOMZ_TAG_HOST}           |__/    ${MOMZ_TAG_USER}                   ${MOMZ_TAG_DIR}            |__/    ${MOMZ_TAG_GIT}                       "'\033[0m'
+	echo "${MOMZ_TAG_HOST}                   ${MOMZ_TAG_USER}                   ${MOMZ_TAG_DIR}                    ${MOMZ_TAG_GIT}                       "'\033[0m'
 }
 
 #
