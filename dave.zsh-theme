@@ -33,6 +33,18 @@ DAVE_DIR_INFO='$(dave_dir_prompt_info)'
 DAVE_GIT_INFO_LEFT='$(git_prompt_info)'
 
 ############################################
+#	Username
+############################################
+function dave_prompt_username {
+	if [ -n "$(git_prompt_info)" ]; then
+		echo $( git config --global --list | grep user.email | cut -d'=' -f2 )
+	else
+		echo $( whoami )
+	fi
+}
+DAVE_PROMPT_USERNAME='$(dave_prompt_username)'
+
+############################################
 #	Subversion Prompt
 ############################################
 function dave_svn_prompt_info {
@@ -194,7 +206,7 @@ PROMPT="${PROMPT} ${(C)$(hostname -s)} "
 PROMPT="${PROMPT}%{${DAVE_HOSTUSER_BG}%}%{${DAVE_HOSTUSER_FG}%}"
 PROMPT="${PROMPT}"$'\u25B6'
 PROMPT="${PROMPT}%{${DAVE_USER_BG}%}%{${DAVE_USER_FG}%}"
-PROMPT="${PROMPT} %n "
+PROMPT="${PROMPT} ${DAVE_PROMPT_USERNAME} "
 PROMPT="${PROMPT}%{${DAVE_USERDIR_BG}%}%{${DAVE_USERDIR_FG}%}"
 PROMPT="${PROMPT}"$'\u25B6'
 PROMPT="${PROMPT}%{${DAVE_DIR_BG}%}%{${DAVE_DIR_FG}%}"
