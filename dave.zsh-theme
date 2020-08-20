@@ -202,7 +202,7 @@ ZSH_THEME_SVN_PROMPT_CLEAN=" %{${GIT_CLEAN_COLOR}%}"$'\u2714'
 # Left Prompt
 ############################################
 PROMPT="%{${DAVE_HOST_BG}%}%{${DAVE_HOST_FG}%}"
-PROMPT="${PROMPT} ${(C)$(hostname -s)} "
+PROMPT="${PROMPT} ${$(hostname -s):u} "
 PROMPT="${PROMPT}%{${DAVE_HOSTUSER_BG}%}%{${DAVE_HOSTUSER_FG}%}"
 PROMPT="${PROMPT}"$'\u25B6'
 PROMPT="${PROMPT}%{${DAVE_USER_BG}%}%{${DAVE_USER_FG}%}"
