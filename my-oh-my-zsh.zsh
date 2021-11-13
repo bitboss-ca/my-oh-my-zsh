@@ -62,8 +62,8 @@ then
 		echo -n 'Type Y to update My Oh My ZSH: Y/n: '
 		read x
 		if [ "$x" = Y ] || [ "$x" = y ]; then
-			git pull
 			_my_oh_my_zsh_banner
+			git pull
 			# echo '\033[38;5;027m''+-----------------+------------------+-------------------+----------------------+' '\033[0m'
 		fi
 	fi
