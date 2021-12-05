@@ -79,14 +79,12 @@ then
 	echo `date "+%s"` > $MOMZ_LASTUPDATEFILE
 	cd $HOME/.my-oh-my-zsh
 	git remote update > /dev/null 2>&1
-	# if [ -n "$( git status -uno | grep behind )" ]; then
-	if [ 1 ]; then
+	if [ -n "$( git status -uno | grep behind )" ] || [ -n "${MOMZ_ALWAYS_UPDATE}" ]; then
 		echo -n 'Type Y to update My Oh My ZSH: Y/n: '
 		read x
 		if [ "$x" = Y ] || [ "$x" = y ]; then
 			_my_oh_my_zsh_banner
 			git pull
-			# echo '\033[38;5;027m''+-----------------+------------------+-------------------+----------------------+' '\033[0m'
 		fi
 	fi
 	cd - > /dev/null
