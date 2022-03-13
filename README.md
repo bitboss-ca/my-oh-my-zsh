@@ -21,7 +21,7 @@ Clone the repo:
 > git clone https://github.com/daveish/my-oh-my-zsh.git .my-oh-my-zsh
 
 Add this to .zshrc (before the call to oh-my-zsh):
-> source $HOME/.my-oh-my-zsh/my-oh-my-zsh.sh
+> source $HOME/.my-oh-my-zsh/my-oh-my-zsh.zsh
 
 Set your theme to dave in .zshrc
 > ZSH_THEME="dave" 
