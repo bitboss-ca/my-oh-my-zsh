@@ -36,7 +36,7 @@ DAVE_GIT_INFO_LEFT='$(git_prompt_info)'
 #	Username
 ############################################
 function dave_prompt_username {
-	if [ -n "$(git_prompt_info)" ]; then
+	if [ -n "$(git_prompt_info)" ] && [ -f ~/.gitconfig ]; then
 		echo $( git config --global --list | grep user.email | cut -d'=' -f2 )
 	else
 		echo $( whoami )
